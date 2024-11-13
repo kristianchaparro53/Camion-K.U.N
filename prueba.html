@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Autobús con asientos interactivos</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+    }
+    .palette {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+    .color-box {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .color-indicator {
+      width: 20px;
+      height: 20px;
+      border-radius: 3px;
+    }
+    .occupied {
+      background-color: red;
+    }
+    .available {
+      background-color: blue;
+    }
+    .damaged {
+      background-color: orange;
+    }
+    .bus-container {
+      display: grid;
+      grid-template-columns: repeat(7, 60px);
+      grid-gap: 10px;
+      padding: 20px;
+      background-color: #ddd;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    .seat {
+      width: 60px;
+      height: 60px;
+      background-color: blue;
+      border-radius: 5px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+    }
+    .options {
+      display: none;
+      position: absolute;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      padding: 10px;
+      border-radius: 5px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    .option-button {
+      background-color: #007bff;
+      color: white;
+      padding: 5px;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      margin-top: 5px;
+    }
+    .option-button:hover {
+      opacity: 0.8;
+    }
+    .spacer {
+      grid-column: span 1;
+      visibility: hidden;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Paleta de colores -->
+<div class="palette">
+  <div class="color-box">
+    <div class="color-indicator occupied"></div>
+    <span>Ocupado</span>
+  </div>
+  <div class="color-box">
+    <div class="color-indicator available"></div>
+    <span>Disponible</span>
+  </div>
+  <div class="color-box">
+    <div class="color-indicator damaged"></div>
+    <span>Dañado</span>
+  </div>
+</div>
+
+<div class="bus-container">
+  <!-- Fila superior -->
+  <div class="seat" onclick="showOptions(event, this)">1</div>
+  <div class="seat" onclick="showOptions(event, this)">2</div>
+  <div class="seat" onclick="showOptions(event, this)">3</div>
+  <div class="spacer"></div>
+  <div class="seat" onclick="showOptions(event, this)">4</div>
+  <div class="seat" onclick="showOptions(event, this)">5</div>
+  <div class="seat" onclick="showOptions(event, this)">6</div>
+
+  <!-- Fila inferior -->
+  <div class="seat" onclick="showOptions(event, this)">7</div>
+  <div class="seat" onclick="showOptions(event, this)">8</div>
+  <div class="seat" onclick="showOptions(event, this)">9</div>
+  <div class="spacer"></div>
+  <div class="seat" onclick="showOptions(event, this)">10</div>
+  <div class="seat" onclick="showOptions(event, this)">11</div>
+  <div class="seat" onclick="showOptions(event, this)">12</div>
+</div>
+
+<!-- Menú de opciones -->
+<div class="options" id="options">
+  <button class="option-button" onclick="setStatus('occupied')">Ocupado</button>
+  <button class="option-button" onclick="setStatus('damaged')">Dañado</button>
+</div>
+
+<script>
+  let selectedSeat = null;
+
+  // Mostrar las opciones al hacer clic en un asiento
+  function showOptions(event, seat) {
+    selectedSeat = seat;
+    const options = document.getElementById('options');
+    options.style.display = 'block';
+    options.style.left = `${event.pageX}px`;
+    options.style.top = `${event.pageY}px`;
+  }
+
+  // Cambiar el estado del asiento según la opción seleccionada
+  function setStatus(status) {
+    if (selectedSeat) {
+      if (status === 'occupied') {
+        selectedSeat.style.backgroundColor = 'red';
+      } else if (status === 'damaged') {
+        selectedSeat.style.backgroundColor = 'orange';
+      }
+    }
+    closeOptions();
+  }
+
+  // Cerrar el menú de opciones
+  function closeOptions() {
+    document.getElementById('options').style.display = 'none';
+  }
+
+  // Cerrar el menú de opciones si se hace clic fuera de él
+  window.onclick = function(event) {
+    const options = document.getElementById('options');
+    if (event.target !== selectedSeat && !options.contains(event.target)) {
+      closeOptions();
+    }
+  }
+</script>
+
+</body>
+</html>

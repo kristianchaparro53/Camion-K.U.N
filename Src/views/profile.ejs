@@ -1,23 +1,330 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Perfil de Usuario</title>
+  <title>Perfil de Usuario y Autobús con Asientos Interactivos</title>
   <link href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/profile.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: sans-serif;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: #23242a;
+      min-height: 100vh;
+    }
+
+    .profile-container {
+      position: relative;
+      width: 370px;
+      height: 450px;
+      background: #1c1c1c;
+      border-radius: 25px;
+      overflow: hidden;
+      margin-bottom: 50px;
+    }
+
+    .profile-container::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 370px;
+      height: 450px;
+      background: linear-gradient(60deg, transparent, #00aaff, #00aaff);
+      transform-origin: bottom right;
+      animation: animate 6s linear infinite;
+    }
+
+    .profile-container::after {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 370px;
+      height: 450px;
+      background: linear-gradient(60deg, transparent, #003399, #003399);
+      transform-origin: bottom right;
+      animation: animate 6s linear infinite;
+      animation-delay: -3s;
+    }
+
+    @keyframes animate {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    form {
+      position: absolute;
+      inset: 2px;
+      border-radius: 25px;
+      background: #18191d;
+      z-index: 10;
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .profile-container h1 {
+      font-size: 2em;
+      color: #00aaff;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .user-icon {
+      font-size: 4em;
+      color: #00aaff;
+      margin-bottom: 20px;
+    }
+
+    .profile-container p {
+      font-size: 1em;
+      color: #8f8f8f;
+      margin-bottom: 20px;
+      text-align: left;
+      width: 100%;
+    }
+
+    .profile-container p span {
+      font-weight: bold;
+      color: #00aaff;
+    }
+
+    .logout-button {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 1em;
+      color: #ffffff;
+      background: #00aaff;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+
+    .logout-button:hover {
+      background: #003399;
+    }
+
+    /* Bus seats section */
+    .palette {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .color-box {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .color-indicator {
+      width: 20px;
+      height: 20px;
+      border-radius: 3px;
+    }
+
+    .occupied {
+      background-color: red;
+    }
+
+    .available {
+      background-color: blue;
+    }
+
+    .damaged {
+      background-color: orange;
+    }
+
+    .bus-container {
+      display: grid;
+      grid-template-columns: repeat(7, 60px);
+      grid-gap: 10px;
+      padding: 20px;
+      background-color: #ddd;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .seat {
+      width: 60px;
+      height: 60px;
+      background-color: blue;
+      border-radius: 5px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+    }
+
+    .options {
+      display: none;
+      position: absolute;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      padding: 10px;
+      border-radius: 5px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .option-button {
+      background-color: #007bff;
+      color: white;
+      padding: 5px;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      margin-top: 5px;
+    }
+
+    .option-button:hover {
+      opacity: 0.8;
+    }
+
+    .spacer {
+      grid-column: span 1;
+      visibility: hidden;
+    }
+  </style>
 </head>
+
 <body>
   <div class="profile-container">
     <form action="">
       <h1>Perfil de Usuario</h1>
       <div class="user-icon"><i class="ri-user-line"></i></div>
-      <p><span>Nombre:</span> <%= user.firstName %></p>
-      <p><span>Apellido:</span> <%= user.lastName %></p>
-      <p><span>Turno:</span> <%= user.shift %></p>
-      <p><span>Número de Camión:</span> <%= user.busNumber %></p>
+      <p><span>Nombre:</span>
+        <%= user.firstName %>
+      </p>
+      <p><span>Apellido:</span>
+        <%= user.lastName %>
+      </p>
+      <p><span>Turno:</span>
+        <%= user.shift %>
+      </p>
+      <p><span>Número de Camión:</span>
+        <%= user.busNumber %>
+      </p>
       <a href="/logout" class="logout-button">Cerrar Sesión</a>
     </form>
   </div>
+
+  <!-- Paleta de colores -->
+  <div class="palette">
+    <div class="color-box">
+      <div class="color-indicator occupied"></div>
+      <span>Ocupado</span>
+    </div>
+    <div class="color-box">
+      <div class="color-indicator available"></div>
+      <span>Disponible</span>
+    </div>
+    <div class="color-box">
+      <div class="color-indicator damaged"></div>
+      <span>Dañado</span>
+    </div>
+  </div>
+
+  <div class="bus-container">
+    <!-- Fila superior -->
+    <div class="seat" onclick="showOptions(event, this)">1</div>
+    <div class="seat" onclick="showOptions(event, this)">2</div>
+    <div class="seat" onclick="showOptions(event, this)">3</div>
+    <div class="spacer"></div>
+    <div class="seat" onclick="showOptions(event, this)">4</div>
+    <div class="seat" onclick="showOptions(event, this)">5</div>
+    <div class="seat" onclick="showOptions(event, this)">6</div>
+
+    <!-- Fila inferior -->
+    <div class="seat" onclick="showOptions(event, this)">7</div>
+    <div class="seat" onclick="showOptions(event, this)">8</div>
+    <div class="seat" onclick="showOptions(event, this)">9</div>
+    <div class="spacer"></div>
+    <div class="seat" onclick="showOptions(event, this)">10</div>
+    <div class="seat" onclick="showOptions(event, this)">11</div>
+    <div class="seat" onclick="showOptions(event, this)">12</div>
+  </div>
+  <!-- Menú de opciones -->
+  <div class="options" id="options">
+    <button class="option-button" onclick="setStatus('available')">Libre</button>
+    <button class="option-button" onclick="setStatus('occupied')">Ocupado</button>
+    <button class="option-button" onclick="setStatus('damaged')">Dañado</button>
+  </div>
+  <script>
+    let selectedSeat = null;
+
+    function setRandomOccupiedSeats() {
+      const seats = document.querySelectorAll('.seat');
+      const occupiedSeats = new Set();
+
+      while (occupiedSeats.size < 4) {
+        const randomIndex = Math.floor(Math.random() * seats.length);
+        occupiedSeats.add(randomIndex);
+      }
+
+      occupiedSeats.forEach(index => {
+        seats[index].style.backgroundColor = 'red';
+      });
+    }
+
+    window.onload = setRandomOccupiedSeats;
+
+    function showOptions(event, seat) {
+      selectedSeat = seat;
+      const options = document.getElementById('options');
+      options.style.display = 'block';
+      options.style.left = `${ event.pageX }px`;
+      options.style.top = `${ event.pageY }px`;
+    }
+
+    function setStatus(status) {
+      if (selectedSeat) {
+        if (status === 'available') {
+          selectedSeat.style.backgroundColor = 'blue';
+        }
+        else if (status === 'occupied') {
+          selectedSeat.style.backgroundColor = 'red';
+        } 
+        else if (status === 'damaged') {
+          selectedSeat.style.backgroundColor = 'orange';
+        }
+      }
+      closeOptions();
+    }
+
+    function closeOptions() {
+      document.getElementById('options').style.display = 'none';
+    }
+
+    window.onclick = function (event) {
+      const options = document.getElementById('options');
+      if (event.target !== selectedSeat && !options.contains(event.target)) {
+        closeOptions();
+      }
+    }
+  </script>
 </body>
+
 </html>
