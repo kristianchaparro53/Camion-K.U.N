@@ -1,0 +1,99 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #23242a;
+    color: #ffffff;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+header {
+    margin-bottom: 30px;
+}
+
+header h1 {
+    font-size: 2em;
+    color: #00aaff;
+    text-align: center;
+}
+
+section {
+    background: #1c1c1c;
+    padding: 30px;
+    border-radius: 15px;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+section h2 {
+    font-size: 1.2em;
+    color: #00aaff;
+    margin-bottom: 20px;
+}
+
+section h3 {
+    font-size: 1em;
+    color: #8f8f8f;
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form input[type="text"] {
+    width: 100%;
+    max-width: 300px;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 5px;
+    background: #28292d;
+    color: #ffffff;
+    font-size: 1em;
+    text-align: center;
+}
+
+form input[type="text"]::placeholder {
+    color: #8f8f8f;
+}
+
+form button {
+    width: 100%;
+    max-width: 300px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background: #00aaff;
+    color: #ffffff;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+form button:hover {
+    background: #003399;
+}
+
+footer {
+    margin-top: 30px;
+    text-align: center;
+}
+
+footer p {
+    color: #8f8f8f;
+    font-size: 0.9em;
+}

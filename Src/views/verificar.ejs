@@ -1,0 +1,41 @@
+<!-- views/verificar.ejs -->
+<script>
+  window.onload = function() {
+      '<% if (messages && messages.length > 0) { %>'
+          setTimeout(function() {
+              alert("<%= messages[0] %>");
+          }, 100);
+      '<% } %>'
+  };
+</script>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verificación</title>
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="css/verificar.css">
+</head>
+<body>
+  <header>
+    <h1>Verificación</h1>
+  </header>
+
+  <section>
+    
+   <h2>El codigo ha sido enviado a su Correo registrado</h2>
+
+    <h3>Ingresa el código que te fue enviado:</h3>
+    <form action="/db/verificar-codigo" method="POST">
+      <input type="text" name="correo" value="<%= correo %>" hidden>
+      <input type="text" name="code" required placeholder="Código de verificación" />
+      <button type="submit">Verificar</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>&copy; 2024 Camión K.U.N. Todos los derechos reservados.</p>
+  </footer>
+</body>
+</html>

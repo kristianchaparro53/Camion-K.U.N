@@ -1,0 +1,86 @@
+<script>
+  window.onload = function() {
+      '<% if (messages && messages.length > 0) { %>'
+          setTimeout(function() {
+              alert("<%= messages[0] %>");
+          }, 100);
+      '<% } %>'
+  };
+</script>
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Página de Inicio</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="css/index.css">
+    
+  </head>
+  <body>
+    <nav>
+      <ul class="nav__links">
+        <li class="link"><a href="/">INICIO</a></li>
+        <li class="link"><a href="/login">INICIAR SESIÓN</a></li>
+        <li class="link"><a href="/register">REGISTRARSE</a></li>
+        <li class="link"><a href="#">ASIENTOS</a></li>
+      </ul>
+    </nav>
+
+    <div class="container">
+      <div class="container__left">
+        <div class="left__content">
+          <h4>Sobre Nosotros</h4>
+          <p>
+            Creemos que el futuro del transporte es digital, y en Camión K.U.N
+            trabajamos para hacerlo realidad, trayendo la tecnología al alcance de
+            cada viaje y a cada persona.
+          </p>
+        </div>
+      </div>
+      <div class="container__right">
+        <div class="right__content">
+          <h1>Revolución </h1>
+          <h4>de movilidad</h4>
+          <p>
+            Con Camión K.U.N, buscamos resolver los desafíos diarios del transporte
+            público, desde la asignación eficiente de asientos hasta la gestión de
+            mantenimiento en tiempo real. Nuestro objetivo es ofrecer una experiencia
+            más fluida, segura y práctica para pasajeros y conductores.
+          </p>
+          <div class="socials">
+            <span><i class="ri-instagram-line"></i></span>
+            <span><i class="ri-twitter-fill"></i></span>
+            <span><i class="ri-facebook-fill"></i></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="map-section">
+      <div class="map-section-content">
+        <h2>Encuentra tu ruta</h2>
+        <p>Descubre la mejor manera de llegar a tu destino con nuestra herramienta de rutas personalizadas.</p>
+      </div>
+      <div id="map"></div>
+    </div>
+
+    <div class="cards-container">
+      <div class="card">
+        <i class="ri-bus-2-line card-icon"></i>
+        <p class="card-text">Transporte Seguro</p>
+      </div>
+      <div class="card">
+        <i class="ri-road-map-line card-icon"></i>
+        <p class="card-text">Rutas Eficientes</p>
+      </div>
+      <div class="card">
+        <i class="ri-mental-health-line card-icon"></i>
+        <p class="card-text">Comodidad y Confianza</p>
+      </div>
+    </div>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBpYvlYpVsf0isNjp9rAq3xZr7Pz7QyJ_I&callback=initMap" async defer></script>
+    <script src="js/index.js"></script>
+  </body>
+</html>

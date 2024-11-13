@@ -1,0 +1,39 @@
+<script>
+  window.onload = function() {
+      '<% if (messages && messages.length > 0) { %>'
+          setTimeout(function() {
+              alert("<%= messages[0] %>");
+          }, 100);
+      '<% } %>'
+  };
+</script>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+  <div class="box">
+    <form action="/db/login" method="post">
+      <h2>Iniciar Sesión</h2>
+      <div class="inputBox">
+        <input type="email" name="email"  required />
+        <span>Correo</span>
+        <i></i>
+      </div>
+      <div class="inputBox">
+        <input type="password" name="password"  required />
+        <span>Contraseña</span>
+        <i></i>
+      </div>
+      <input type="submit" value="Iniciar Sesión" />
+      <a href="/auth/google" class="google-button">
+        <img src="img/Google.jpg" alt="Google">
+      </a>
+    </form>
+  </div>
+</body>
+</html>

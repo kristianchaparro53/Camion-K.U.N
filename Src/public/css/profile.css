@@ -1,0 +1,115 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #23242a;
+    min-height: 100vh;
+}
+
+.profile-container {
+    position: relative;
+    width: 370px;
+    height: 450px;
+    background: #1c1c1c;
+    border-radius: 25px;
+    overflow: hidden;
+}
+
+.profile-container::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 370px;
+    height: 450px;
+    background: linear-gradient(60deg, transparent, #00aaff, #00aaff);
+    transform-origin: bottom right;
+    animation: animate 6s linear infinite;
+}
+
+.profile-container::after {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 370px;
+    height: 450px;
+    background: linear-gradient(60deg, transparent, #003399, #003399);
+    transform-origin: bottom right;
+    animation: animate 6s linear infinite;
+    animation-delay: -3s;
+}
+
+@keyframes animate {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+form {
+    position: absolute;
+    inset: 2px;
+    border-radius: 25px;
+    background: #18191d;
+    z-index: 10;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-container h1 {
+    font-size: 2em;
+    color: #00aaff;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.user-icon {
+    font-size: 4em;
+    color: #00aaff;
+    margin-bottom: 20px;
+}
+
+.profile-container p {
+    font-size: 1em;
+    color: #8f8f8f;
+    margin-bottom: 20px;
+    text-align: left;
+    width: 100%;
+}
+
+.profile-container p span {
+    font-weight: bold;
+    color: #00aaff;
+}
+
+.logout-button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 1em;
+    color: #ffffff;
+    background: #00aaff;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.3s;
+}
+
+.logout-button:hover {
+    background: #003399;
+}

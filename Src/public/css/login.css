@@ -1,0 +1,182 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #23242a;
+    min-height: 100vh;
+}
+
+.box {
+    position: relative;
+    width: 370px;
+    height: 450px;
+    background: #1c1c1c;
+    border-radius: 50px 5px;
+    overflow: hidden;
+}
+
+.box::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 370px;
+    height: 500px;
+    background: linear-gradient(60deg, transparent, #00aaff, #00aaff);
+    transform-origin: bottom right;
+    animation: animate 6s linear infinite;
+}
+
+.box::after {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 370px;
+    height: 500px;
+    background: linear-gradient(60deg, transparent, #003399, #003399);
+    transform-origin: bottom right;
+    animation: animate 6s linear infinite;
+    animation-delay: -3s;
+}
+
+@keyframes animate {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+form {
+    position: absolute;
+    inset: 2px;
+    border-radius: 50px 5px;
+    background: #18191d;
+    z-index: 10;
+    padding: 30px 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+h2 {
+    color: #00aaff;
+    font-size: 35px;
+    font-weight: 500;
+    text-align: center;
+}
+
+.inputBox {
+    position: relative;
+    width: 300px;
+    margin-top: 35px;
+}
+
+.inputBox input {
+    position: relative;
+    width: 100%;
+    padding: 20px 10px 10px;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #23242a;
+    font-size: 1em;
+    letter-spacing: 0.05em;
+    z-index: 10;
+}
+
+input[type="submit"] {
+    font-size: 20px;
+    border: none;
+    outline: none;
+    background: #00aaff;
+    padding: 10px;
+    margin-top: 40px;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    color: #fff;
+}
+
+input[type="submit"]:active {
+    background: linear-gradient(90deg, #00aaff, #003399);
+    opacity: 0.8;
+}
+
+.inputBox span {
+    position: absolute;
+    left: 0;
+    padding: 20px 10px 10px;
+    font-size: 1em;
+    color: #8f8f8f;
+    pointer-events: none;
+    letter-spacing: 0.03em;
+    transition: 0.5s;
+}
+
+.inputBox input:valid~span,
+.inputBox input:focus~span {
+    color: #00aaff;
+    transform: translateX(-10px) translateY(-30px);
+    font-size: 0.75em;
+}
+
+.inputBox i {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background: #00aaff;
+    border-radius: 4px;
+    transition: 0.5s;
+    pointer-events: none;
+    z-index: 9;
+}
+
+.inputBox input:valid~i,
+.inputBox input:focus~i {
+    height: 44px;
+}
+
+.google-button {
+    font-size: 20px;
+    border: none;
+    outline: none;
+    background: #f5f3f3;
+    color: #000000;
+    padding: 10px;
+    margin-top: 20px;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: background 0.3s;
+    height: 50px;
+    /* Ajusta la altura para el botón de Google */
+}
+
+.google-button img {
+    height: 100%;
+    /* La imagen se ajusta a la altura del botón */
+    margin-right: 10px;
+    /* Espacio entre la imagen y el texto */
+}
+
+.google-button:hover {
+    background: #7e7777;
+}

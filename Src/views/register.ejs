@@ -1,0 +1,58 @@
+<script>
+  window.onload = function() {
+      '<% if (messages && messages.length > 0) { %>'
+          setTimeout(function() {
+              alert("<%= messages[0] %>");
+          }, 100);
+      '<% } %>'
+  };
+</script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro</title>
+  <link rel="stylesheet" href="css/register.css">
+</head>
+<body>
+  <div class="register-container">
+    <form action="/db/register" method="post">
+      <h2>Registrarse</h2>
+      <div class="inputBox">
+        <input type="text" name="firstName" required />
+        <span>Nombre</span>
+      </div>
+      <div class="inputBox">
+        <input type="text" name="lastName" required />
+        <span>Apellido</span>
+      </div>
+      <div class="inputBox">
+        <input type="email" name="email" required />
+        <span>Correo</span>
+      </div>
+      <div class="inputBox">
+        <input type="password" name="password" required />
+        <span>Contraseña</span>
+      </div>
+      <div class="inputBox">
+        <select name="shift" required>
+          <option value="" style="color: gray;" selected disabled>Turno</option>
+          <option value="Matutino">Matutino</option>
+          <option value="Vespertino">Vespertino</option>
+          <option value="Nocturno">Nocturno</option>
+        </select>
+      </div>
+      <div class="inputBox">
+        <input type="text" name="busNumber" required />
+        <span>Número de Camión</span>
+      </div>
+      <div class="inputBox">
+        <input type="text" name="phoneNumber" required />
+        <span>Número Celular</span>
+      </div>
+      <input type="submit" value="Registrar" />
+    </form>
+  </div>
+</body>
+</html>

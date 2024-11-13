@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perfil de Usuario</title>
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/profile.css">
+</head>
+<body>
+  <div class="profile-container">
+    <form action="">
+      <h1>Perfil de Usuario</h1>
+      <div class="user-icon"><i class="ri-user-line"></i></div>
+      <p><span>Nombre:</span> <%= user.firstName %></p>
+      <p><span>Apellido:</span> <%= user.lastName %></p>
+      <p><span>Turno:</span> <%= user.shift %></p>
+      <p><span>Número de Camión:</span> <%= user.busNumber %></p>
+      <a href="/logout" class="logout-button">Cerrar Sesión</a>
+    </form>
+  </div>
+</body>
+</html>
